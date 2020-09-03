@@ -30,7 +30,7 @@ session_start();
 
         //執行SQL敘述   
         $Text2 =<<<SqlQuery
-        SELECT account, password FROM member where account = '$account' and password= '$password';
+        SELECT account, password, Authority FROM member where account = '$account' and password= '$password';
         SqlQuery;            
         $result = mysqli_query($link, $Text2);
         // var_dump($result);
@@ -38,19 +38,31 @@ session_start();
         while($row = mysqli_fetch_assoc($result))
         {     
           // var_dump($row);
+          //會員登入
+          if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="0")
+          {    
+            $_SESSION["account"] = $account ;
+            unset($_SESSION["lastPage"]);
+            if (isset($_SESSION["lastPage"]))
+              header(sprintf("Location: %s", $_SESSION["lastPage"]));            
+            else
+              header("Location: index.php");//跳轉到首頁
+            exit();
+          }    
+          
 
-          //判斷帳號密碼符合
-          if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password )
+          //管理員登入
+          if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="1")
           {    
             $_SESSION["account"] = $account ;
             unset($_SESSION["lastPage"]);
             if (isset($_SESSION["lastPage"]))
               header(sprintf("Location: %s", $_SESSION["lastPage"]));
             else
-            // echo "沒有此帳號";
-              header("Location: index.php");//跳轉到首頁
+              header("Location: mindex.php");//跳轉到首頁
             exit();
-          }           
+          }    
+          
         }        
     }
 
