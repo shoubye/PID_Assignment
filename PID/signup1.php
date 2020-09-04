@@ -30,15 +30,12 @@ if (isset($_POST["btnOK1"]))
 
 }
 
-
 // if($name!=null && $account!=null && $password !=null && $mail !=null && $phone !=null && $address !=null&&  $password2==$password )
 // {
 // echo "<script>alert('註冊成功');</script>";
 // }
 // else 
 // echo "<script>alert('註冊失敗');</script>";
-
-
 
  //重設
   if (isset($_POST["btnHome"]))
@@ -48,8 +45,6 @@ if (isset($_POST["btnOK1"]))
   }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,55 +113,7 @@ if (isset($_POST["btnOK1"]))
                 <input type="submit" name="btnHome" id="btnHome" value="回首頁" />
             </td>
     </tr>
-
-        </table>
-        <!-- <div class="form-group">
-            <label for="usr">姓名：</label>
-            <input type="text" class="form-control" id="name">
-        </div>
-
-        <div class="form-group">
-            <label for="pwd">會員帳號：</label>
-            <input type="text" class="form-control" id="account">
-        </div>
-
-        <div class="form-group">
-            <label for="pwd">會員密碼：</label>
-            <input type="password" class="form-control" id="password">
-        </div>
-
-        <div class="form-group">
-            <label for="pwd">再次輸入密碼：</label>
-            <input type="password" class="form-control" id="password">
-        </div>
-
-        <div class="form-group">
-            <label for="pwd">身分證號碼：</label>
-            <input type="text" class="form-control" id="id">
-        </div>
-
-        <div class="form-group">
-            <label for="E-mail">E-mail：</label>
-            <input type="text" class="form-control" id="pwd">
-        </div>
-
-        <div class="form-group">
-            <label for="pwd">聯絡電話：</label>
-            <input type="text" class="form-control" id="pwd">
-        </div> -->
-
-        <!-- <div class="form-group">
-            <label for="pwd">通訊地址：</label>
-            <input type="text" class="form-control" id="pwd">
-        </div> -->
-
-
-
 </form>
 
-
-
-
-    
 </body>
 </html>

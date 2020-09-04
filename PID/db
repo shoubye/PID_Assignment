@@ -15,12 +15,21 @@ create table member
 
 
 
-INSERT INTO member (name, account ,password , mail , phone ,address)
+create table product
+(
+    productId int auto_increment primary key,
+    productname varchar(30),
+    picture varchar(20),
+    price varchar(20),    
+    quantity varchar(100)
+);
 
 
+INSERT INTO orderdetail (memberId, account ,product , price , quantity ,total, date)values
+('2','123','132','60','5','300', 2020-09-05)
+ 
 
 
-
-
-
+INSERT INTO product(productname, picture , price ,quantity)values
+('123456','','60','5')
 

@@ -20,9 +20,9 @@
 
 
             <tr>
-            <td>價格：$100 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$200 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$300 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
+            <td>價格：$100 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
+            <td>價格：$200 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
+            <td>價格：$300 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
             </tr>
 
 
@@ -34,24 +34,10 @@
 
 
             <tr>
-            <td>價格：$400 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$500 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$600 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
+            <td>價格：$400 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
+            <td>價格：$500 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
+            <td>價格：$600 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-danger" value ="加入購物車"/></td>
             </tr>
-
-
-            <tr>
-            <td width="250"  height="180">  <img src="">  </td>
-            <td width="250"  height="180">  <img src="">  </td>
-            <td width="250"  height="180">  <img src="">  </td>
-            </tr>
-
-
-            <tr>
-            <td>價格：$700 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$800 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            <td>價格：$900 &nbsp;&nbsp;<input name="okbutton5" type="submit" class="btn btn-outline-danger" value ="加入購物車"/></td>
-            </tr>       
 
             </tbody>
         </table>

@@ -27,19 +27,16 @@ session_start();
 
         $account = $_POST["txtUserName"];       
         $password =$_POST["txtPassword"];
-
-        //執行SQL敘述   
+ 
         $Text2 =<<<SqlQuery
-        SELECT account, password, Authority FROM member where account = '$account' and password= '$password';
+        SELECT account, password, Authority ,limitvx FROM member where account = '$account' and password= '$password';
         SqlQuery;            
         $result = mysqli_query($link, $Text2);
-        // var_dump($result);
    
         while($row = mysqli_fetch_assoc($result))
         {     
-          // var_dump($row);
           //會員登入
-          if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="0")
+        if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="0" && $row["limitvx"]!="X")
           {    
             $_SESSION["account"] = $account ;
             unset($_SESSION["lastPage"]);
@@ -49,10 +46,8 @@ session_start();
               header("Location: index.php");//跳轉到首頁
             exit();
           }    
-          
-
           //管理員登入
-          if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="1")
+        if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="1")
           {    
             $_SESSION["account"] = $account ;
             unset($_SESSION["lastPage"]);
@@ -66,7 +61,6 @@ session_start();
         }        
     }
 
-
 ?>
 
 <html>
@@ -79,7 +73,7 @@ session_start();
   <table style="border:8px #FFD382 groove;" cellpadding="10" border='0' align="center">
 
     <tr>
-      <td colspan="2" align="center" bgcolor="#A6D989"><font face="link" color="#4766FC" size="5">會  員  登  入</font></td>
+      <td colspan="2" align="center" bgcolor="#A6D989"><font face="link" color="#4766FC" size="5">會員登入</font></td>
     </tr> 
 
     <tr>
