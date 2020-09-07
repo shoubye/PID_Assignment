@@ -2,7 +2,7 @@
 
 session_start();
 
-    if (isset($_GET["logout"]))
+    if (isset($_POST["logout"]))
     {
       $_SESSION["account"]= $account;
 
@@ -35,30 +35,36 @@ session_start();
    
         while($row = mysqli_fetch_assoc($result))
         {     
-          //會員登入
-        if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="0" && $row["limitvx"]!="X")
-          {    
-            $_SESSION["account"] = $account ;
-            unset($_SESSION["lastPage"]);
-            if (isset($_SESSION["lastPage"]))
-              header(sprintf("Location: %s", $_SESSION["lastPage"]));            
+
+            //會員登入
+            if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="0" && $row["limitvx"]!="X")
+            {    
+                $_SESSION["account"] = $account ;
+                unset($_SESSION["lastPage"]);
+                if (isset($_SESSION["lastPage"]))
+                  header(sprintf("Location: %s", $_SESSION["lastPage"]));            
+                else
+                  header("Location: index.php");//跳轉到首頁
+                exit();
+            }    
+
+            //管理員登入
+            else if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="1")
+            {    
+                $_SESSION["account"] = $account ;
+                unset($_SESSION["lastPage"]);
+                if (isset($_SESSION["lastPage"]))
+                  header(sprintf("Location: %s", $_SESSION["lastPage"]));
+                else
+                  header("Location: mindex.php");//跳轉到首頁
+                exit();
+            }               
             else
-              header("Location: index.php");//跳轉到首頁
-            exit();
-          }    
-          //管理員登入
-        if($account!=null && $password !=null && $row["account"]==$account && $row["password"]==$password && $row["Authority"]=="1")
-          {    
-            $_SESSION["account"] = $account ;
-            unset($_SESSION["lastPage"]);
-            if (isset($_SESSION["lastPage"]))
-              header(sprintf("Location: %s", $_SESSION["lastPage"]));
-            else
-              header("Location: mindex.php");//跳轉到首頁
-            exit();
-          }    
-          
-        }        
+            {
+              echo "<script>alert('哦哦！您被停權了');</script>";
+            }
+        }    
+
     }
 
 ?>

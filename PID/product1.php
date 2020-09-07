@@ -5,11 +5,13 @@ session_start();
 $link = @mysqli_connect("localhost", "root", "root", "shopping", 8889) or die(mysqli_connect_error());  
 $result = mysqli_query($link, "set names utf8");
 
-
+$productid = $_POST["update"];
 $productname = $_POST["text0"];
 $picture = $_POST["text1"];
-$price = $_POST["text2"];
-$quantity = $_POST["text3"];
+$feature = $_POST["text2"];
+$price = $_POST["text3"];
+$quantity = $_POST["text4"];
+
 $delete = $_POST["delete"];
 $update = $_POST["update"];
 
@@ -41,20 +43,11 @@ if(isset($_POST["okbutton9"]))
 //新增
 if(isset($_POST["addgo"]))
 {
-  $Text8 =<<<SqlQuery
-  INSERT INTO product (productname, picture , price ,quantity) VALUES ('$productname','$picture','$price','$quantity');
-  SqlQuery;
-  $result = mysqli_query ($link, $Text8); 
+$Text8 =<<<SqlQuery
+INSERT INTO product (productname, picture ,feature, price ,quantity) VALUES ('$productname','$picture', '$feature' ,'$price','$quantity');
+SqlQuery;
+$result = mysqli_query ($link, $Text8); 
 }
-
-//修改
-// if(isset($_POST["update"]))
-// {
-//   $Text9 =<<<SqlQuery
-//   INSERT INTO product (productname, picture , price ,quantity) VALUES ('$productname','$picture','$price','$quantity');
-//   SqlQuery;
-//   $result = mysqli_query ($link, $Text9); 
-// }
 
 //刪除
 if(isset($_POST["delete"]))
@@ -64,7 +57,6 @@ if(isset($_POST["delete"]))
   SqlQuery;
   $result = mysqli_query ($link, $Text10); 
 }
-
 
 $Text7 =<<<SqlQuery
 SELECT * FROM product ;
@@ -79,8 +71,8 @@ $result = mysqli_query ($link, $Text7);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -92,28 +84,32 @@ $result = mysqli_query ($link, $Text7);
     <form  method ="post" >
 
             <div class = "custom-control">           
-                  <font face="link" color="#415FD9" size="7"><u><i>購物網</i></u></font>                     
-                  <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
-                  <font face="link" color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
+                  <font  color="#415FD9" size="7"><u><i>飲料錶購物網</i></u></font>
                   <input name="okbutton8" type="submit" class="btn btn-success" value ="商品管理"/> 
-                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>         
+                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>                       
+                  <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
+                  <font  color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
             </div>        
 
             <hr size="8" align="center" noshade width="100%" color="A702CF">
             
-            <div class="container">                
-                    <h2>我的商品</h2>
-                    <input name="add" type="button" id ="add"  class="btn btn-danger" value ="新增"/> 
               
-                <table class="table table-striped" align="center" cellspacing = 0  cellspadding = 0>
+            
+                <h2>我的商品</h2>
+                <input name="add" type="button" id ="add"  class="btn btn-danger" value ="新增"/> 
 
+
+            <div >                                               
+                <table  class="table" align='center' valign="middle" >
+                
                     <thead>
                     <tr>
                         <th>產品編號</th>
                         <th>名稱</th>
-                        <th>圖片</th>                
+                        <th>圖片</th>
+                        <th>特色</th>                 
                         <th>價格</th>
-                        <th>數量</th>
+                        <th>庫存</th>
                         <th>操作</th>
                     </tr> 
                     </thead>
@@ -121,14 +117,15 @@ $result = mysqli_query ($link, $Text7);
  
                         <?php  while($row= mysqli_fetch_assoc($result)) {?>  
                             <tr>
-                                <td>  <?php echo $row["productId"];    ?> </td>
-                                <td>  <?php echo $row["productname"];  ?> </td>
-                                <td>  <img id= <?php echo $row["picture"];?>    src ="./image/<?php echo $row["picture"];?>"> </td>
-                                <td>  <?php echo $row["price"];        ?> </td>
+                                <td width ="120">  <?php echo $row["productId"];    ?> </td>
+                                <td width ="170">  <?php echo $row["productname"];  ?> </td>
+                                <td width ="200">  <img id= <?php echo $row["picture"];?>    src ="./image/<?php echo $row["picture"];?>"> </td>
+                                <td width ="250"> ＄ <?php echo $row["feature"];        ?> </td>
+                                <td width ="180"> ＄ <?php echo $row["price"];        ?> </td>
                                 <td>  <?php echo $row["quantity"];     ?> </td>
    
                                 <td>                                    
-                                    <button type="submit" name ="update" value ="<?= $row["productId"]?>">修改</button>                                  
+                                    <button type="button" name ="update" id ="update"  value ="<?= $row["productId"]?>">修改</button>                                  
                                     <button type="submit" name ="delete" value ="<?= $row["productId"]?>">刪除</button>              
                                 </td>                                                                    
                             </tr>         
@@ -157,17 +154,22 @@ $result = mysqli_query ($link, $Text7);
 
                         <div class="form-group">
                             <label >商品圖片</label>
-                            <input type="file" name="text1" id="text1" multiple  placeholder=""/>
+                            <input type="file" name="text1" id="file" multiple  placeholder=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label >特色</label>
+                            <input type="text2" name="text2" id="text2" class="form-control" placeholder=""/>
                         </div>
 
                         <div class="form-group">
                             <label >＄＄＄＄＄</label>
-                            <input type="text" name="text2" id="text2" class="form-control" placeholder=""/>
+                            <input type="text" name="text3" id="text3" class="form-control" placeholder=""/>
                         </div>
 
                         <div class="form-group">
                             <label >庫存</label>
-                            <input type="text" name="text3" id="text3" class="form-control" placeholder=""/>
+                            <input type="text" name="text4" id="text4" class="form-control" placeholder=""/>
                         </div>
 
                     </form>
@@ -188,9 +190,17 @@ $result = mysqli_query ($link, $Text7);
 
     <script>
         $("#add").click(function () {
-            //alert("ok");
-          $("#newsModal").modal( { backdrop: "static" } );
+          $("#newsModal").modal( { backdrop: "static" });
         })
+
+        $("#update").click(function () {
+          $("#newsModal").modal( { backdrop: "static" });
+        })
+
+        // <span class="pull-right"><button class="btn btn-info btn-xs editItem">
+        // <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        // </button>&nbsp;<button class="btn btn-danger btn-xs deleteItem">
+        // <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>
     </script>
 </body>
 </html>

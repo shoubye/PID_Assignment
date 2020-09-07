@@ -32,9 +32,8 @@ $result = mysqli_query($link, "set names utf8");
 
 $memberid =  $_POST["gg"];
 $memberid2 = $_POST["qq"];
-// $memberid3 = $_POST["od"];
+$memberid3 = $_POST["od"];
 
-echo $memberid3;
 
 //停用
 if (isset($_POST["gg"]))
@@ -54,10 +53,11 @@ if (isset($_POST["qq"]))
     $result = mysqli_query ($link, $Text6); 
 }    
 
-if (isset($_POST["od"]))
-{
-    header("Location: orderdetail.php");
-} 
+//訂單明細
+// if (isset($_POST["od"]))
+// {
+// header("Location: orderdetail.php");
+// } 
 
 //執行SQL敘述   
 $Text7 =<<<SqlQuery
@@ -74,8 +74,8 @@ $result = mysqli_query($link, $Text7);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -87,19 +87,20 @@ $result = mysqli_query($link, $Text7);
     <form  method ="post" >
 
             <div class = "custom-control">           
-                  <font face="link" color="#415FD9" size="7"><u><i>購物網</i></u></font>                     
-                  <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
-                  <font face="link" color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
+                  <font  color="#415FD9" size="7"><u><i>飲料錶購物網</i></u></font> 
                   <input name="okbutton8" type="submit" class="btn btn-success" value ="商品管理"/> 
-                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>         
+                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>                     
+                  <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
+                  <font  color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
             </div>        
 
             <hr size="8" align="center" noshade width="100%" color="A702CF">
-
-            <div class="container">
+            
+            <!-- class="container" -->
+            <div >
              
                 <h2>會員管理</h2>                     
-                <table class="table table-striped" align="center">
+                <table class="table table-striped" align="center" vertical-align="middle">
 
                     <thead>
                     <tr>
@@ -114,7 +115,7 @@ $result = mysqli_query($link, $Text7);
                         <th>訂單管理</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         <?php  while($row= mysqli_fetch_assoc($result)) {?>                                     
                             <tr>
                                 <td>  <?php echo $row["memberID"];   ?></td>
@@ -129,7 +130,8 @@ $result = mysqli_query($link, $Text7);
                                         <?php echo " ／ "?>
                                     <button type="submit" name ="qq" value ="<?= $row["memberID"]?>">啟用</button>              
                                 </td> 
-                                <td> <button type="submit" name ="od" value ="<?= $row["memberID"]?>">訂單明細</button></td>            
+                                <td> <button type="button" name ="od" class="btn btn-danger" onclick="window.location='orderdetail.php?id=<?= $row['account'] ?>'" >訂單明細</button>
+                                </td>           
                             </tr>         
                         <?php } ?>               
                     </tbody>

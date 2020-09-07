@@ -20,9 +20,43 @@ create table product
     productId int auto_increment primary key,
     productname varchar(30),
     picture varchar(20),
+    feature varchar(100),
     price varchar(20),    
     quantity varchar(100)
 );
+
+
+
+create table cart
+(
+    cartId int auto_increment primary key,
+    maccount varchar(30) default '0',
+    productId varchar(30),    
+    productname varchar(30),
+    picture varchar(20),
+    feature varchar(100),
+    price varchar(20),
+    quantity varchar(100),    
+    buyquantity varchar(100) default '1'
+);
+
+
+
+create table orderdetail
+(
+    orderdetailId int auto_increment primary key,
+    maccount varchar(30),
+    productId varchar(30),    
+    productname varchar(30),
+    picture varchar(20),
+    feature varchar(100),
+    price varchar(20), 
+    buyquantity varchar(100),
+    date datetime 
+);
+
+
+INSERT INTO cart (account, productId , productname ,picture, price, quantity, total) VALUES (account, productId , productname ,picture, price, quantity, total);
 
 
 INSERT INTO orderdetail (memberId, account ,product , price , quantity ,total, date)values
