@@ -47,8 +47,7 @@ if (isset($_POST["addcart"]))
   $result = mysqli_query($link, $Text2);
   $row = mysqli_fetch_assoc($result);
  
-
-//如果購物車內有此商品數量+1
+//如果購物車內有此商品
 if($row["productId"] ==$id )
  {
   $Text3 =<<<SqlQuery
@@ -65,8 +64,8 @@ if($row["productId"] ==$id )
   $result = mysqli_query($link, $Text5);
   $row1 = mysqli_fetch_assoc($result);
   $q = implode("",$row1);
-
-  if($q > $bq){$bq = $bq + 1;}
+  
+  if($q > $bq){$bq = $bq + 1;}//小於庫存量數量+1ㄋ
 
   $Text4 =<<<SqlQuery
   update cart set buyquantity = $bq where productId = '$id';
@@ -94,7 +93,6 @@ $result = mysqli_query ($link, $Text);
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
