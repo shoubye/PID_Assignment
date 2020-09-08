@@ -30,14 +30,9 @@ if (isset($_POST["okbutton3"]))
     exit();      
   }
   else
-  header("Location: signup1.php");
+  header("Location: signup.php");
 }
 
-//賣家中心
-if (isset($_POST["okbutton4"]))
-{
-  header("Location: product.php");
-}
 
 $link = @mysqli_connect("localhost", "root", "root", "shopping", 8889) or die(mysqli_connect_error());  
 $result = mysqli_query($link, "set names utf8");
@@ -152,10 +147,10 @@ $result = mysqli_query ($link, $Text);
                 <font color="#415FD9" size="7"><u><i>飲料錶購物網</i></u></font>
                 <?php if($account == ""){?>
                   <input name="okbutton1" type="submit" class="btn btn-danger" value ="登入"/>
-                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="加入會員"/>
-                  <input name="okbutton7" type="submit" class="btn btn-primary" style="right" value ="管理員登入"/>                   
+                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="註冊"/>
+                  <input name="okbutton7" type="submit" class="btn btn-primary"  value ="管理員登入"/>                   
                 <?php } else {?> 
-                  <input name="okbutton4" type="submit" class="btn btn-info" value ="繼續購物"/> 
+                  <input name="okbutton4" type="button" class="btn btn-info" value ="繼續購物" onclick="window.location='product.php'"/> 
                   <button type="button" name ="record" class="btn btn-primary" onclick="window.location='orderdetail.php?id=<?= $account ?>'" >購買紀錄</button>               
                   <input name="okbutton2" type="submit" class="btn btn-danger" value ="登出"/>
                 <?php }?>  
@@ -202,7 +197,7 @@ $result = mysqli_query ($link, $Text);
 
             <hr size="8" align="center" noshade width="100%" color="A702CF">  
             <div align="right">  
-                <font  color="#000" size="5"><?php echo "<i>總計</i>：＄" . $sum ."&nbsp&nbsp" ?></font>
+                <font  color="#F42238" size="5"><?php echo "<i>總計</i>：＄" . $sum ."&nbsp&nbsp" ?></font>
                 <button name="all" type="submit" class="btn btn btn-primary" >結帳</button>
             </div>
     </form>

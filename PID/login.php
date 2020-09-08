@@ -79,7 +79,7 @@ session_start();
   <table style="border:8px #FFD382 groove;" cellpadding="10" border='0' align="center">
 
     <tr>
-      <td colspan="2" align="center" bgcolor="#A6D989"><font face="link" color="#4766FC" size="5">會員登入</font></td>
+      <td colspan="2" align="center" bgcolor="#A6D989"><font face="link" color="#4766FC" size="5">登入</font></td>
     </tr> 
 
     <tr>

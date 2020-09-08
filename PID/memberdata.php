@@ -15,17 +15,6 @@ if (isset($_POST["okbutton2"]))
   header("Location: index.php");
 }
 
-//商品管理
-if(isset($_POST["okbutton8"]))
-{
- header("Location:product1.php");
-}
-
-//會員管理
-if(isset($_POST["okbutton9"]))
-{
- header("Location: memberdata.php");
-}
 
 $link = @mysqli_connect("localhost", "root", "root", "shopping", 8889) or die(mysqli_connect_error());  
 $result = mysqli_query($link, "set names utf8");   
@@ -53,11 +42,7 @@ if (isset($_POST["qq"]))
     $result = mysqli_query ($link, $Text6); 
 }    
 
-//訂單明細
-// if (isset($_POST["od"]))
-// {
-// header("Location: orderdetail.php");
-// } 
+
 
 //執行SQL敘述   
 $Text7 =<<<SqlQuery
@@ -88,8 +73,8 @@ $result = mysqli_query($link, $Text7);
 
             <div class = "custom-control">           
                   <font  color="#415FD9" size="7"><u><i>飲料錶購物網</i></u></font> 
-                  <input name="okbutton8" type="submit" class="btn btn-success" value ="商品管理"/> 
-                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>                     
+                  <input name="okbutton8" type="button" class="btn btn-success" value ="商品管理" onclick="window.location='product1.php'"/> 
+                  <input name="okbutton9" type="button" class="btn btn-success" value ="會員管理" onclick="window.location='memberdata.php'"/>                     
                   <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
                   <font  color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
             </div>        
@@ -130,7 +115,7 @@ $result = mysqli_query($link, $Text7);
                                         <?php echo " ／ "?>
                                     <button type="submit" name ="qq" value ="<?= $row["memberID"]?>">啟用</button>              
                                 </td> 
-                                <td> <button type="button" name ="od" class="btn btn-danger" onclick="window.location='orderdetail.php?id=<?= $row['account'] ?>'" >訂單明細</button>
+                                <td> <button type="button" name ="od" class="btn btn-danger" onclick="window.location='morderdetail.php?id=<?= $row['account'] ?>'">訂單明細</button>
                                 </td>           
                             </tr>         
                         <?php } ?>               

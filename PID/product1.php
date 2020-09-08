@@ -28,18 +28,6 @@ if (isset($_POST["okbutton2"]))
   header("Location: index.php");
 }
 
-// 商品管理
-if(isset($_POST["okbutton8"]))
-{
- header("Location:product1.php");
-}
-
-//會員管理
-if(isset($_POST["okbutton9"]))
-{
- header("Location: memberdata.php");
-}
-
 //新增
 if(isset($_POST["addgo"]))
 {
@@ -85,19 +73,16 @@ $result = mysqli_query ($link, $Text7);
 
             <div class = "custom-control">           
                   <font  color="#415FD9" size="7"><u><i>飲料錶購物網</i></u></font>
-                  <input name="okbutton8" type="submit" class="btn btn-success" value ="商品管理"/> 
-                  <input name="okbutton9" type="submit" class="btn btn-success" value ="會員管理"/>                       
+                  <input name="okbutton8" type="button" class="btn btn-success" value ="商品管理" onclick="window.location='product1.php'"/> 
+                  <input name="okbutton9" type="button" class="btn btn-success" value ="會員管理" onclick="window.location='memberdata.php'"/>               
                   <input name="okbutton2" type="submit" class="btn btn-primary" value ="管理員登出"/><br>                        
                   <font  color="#D14571" size="5"><?php echo "管理員：".$account?></font><br>                               
             </div>        
 
-            <hr size="8" align="center" noshade width="100%" color="A702CF">
-            
-              
-            
+            <hr size="8" align="center" noshade width="100%" color="A702CF">           
+
                 <h2>我的商品</h2>
                 <input name="add" type="button" id ="add"  class="btn btn-danger" value ="新增"/> 
-
 
             <div >                                               
                 <table  class="table" align='center' valign="middle" >
@@ -125,25 +110,26 @@ $result = mysqli_query ($link, $Text7);
                                 <td>  <?php echo $row["quantity"];     ?> </td>
    
                                 <td>                                    
-                                    <button type="button" name ="update" id ="update"  value ="<?= $row["productId"]?>">修改</button>                                  
+                                    <button type="button" name ="update" id ="update"  onclick="window.location='modify.php?id=<?= $row['productId'] ?>'">修改</button>                                  
                                     <button type="submit" name ="delete" value ="<?= $row["productId"]?>">刪除</button>              
                                 </td>                                                                    
-                            </tr>         
+                            </tr>        
+    
                         <?php } ?>               
                     </tbody>
                 </table>
             </div>       
 
-
-
-    <!-- 對話盒 -->
+    <!-- 跳出框框 -->
       <div id="newsModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>                
+                <div class="modal-header">                    
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>    
+                    <h3>新增商品</h3>            
                 </div>
+                
 
                 <div class="modal-body">
                     <form>
@@ -185,7 +171,63 @@ $result = mysqli_query ($link, $Text7);
             </div>
         </div>
     </div>
-  
+    
+
+
+
+
+
+
+    <div id="Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">                    
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>    
+                    <h3>新增商品</h3>            
+                </div>
+                
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label >商品名稱</label>
+                            <input type="text" name ="text0" id="text0" class="form-control" placeholder=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label >商品圖片</label>
+                            <input type="file" name="text1" id="file" multiple  placeholder=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label >特色</label>
+                            <input type="text2" name="text2" id="text2" class="form-control" placeholder=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label >＄＄＄＄＄</label>
+                            <input type="text" name="text3" id="text3" class="form-control" placeholder=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label >庫存</label>
+                            <input type="text" name="text4" id="text4" class="form-control" placeholder=""/>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                      <div class="pull-right">
+                          <button name = "addgo" type="submit" id="okButton" class="btn btn-success"> 確定 </button>
+                          <button name = "addgg" type="submit" id="cancelButton" class="btn btn-default"  data-dismiss="modal"> 取消 </button>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     </form>
 
     <script>
@@ -193,14 +235,6 @@ $result = mysqli_query ($link, $Text7);
           $("#newsModal").modal( { backdrop: "static" });
         })
 
-        $("#update").click(function () {
-          $("#newsModal").modal( { backdrop: "static" });
-        })
-
-        // <span class="pull-right"><button class="btn btn-info btn-xs editItem">
-        // <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        // </button>&nbsp;<button class="btn btn-danger btn-xs deleteItem">
-        // <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>
     </script>
 </body>
 </html>

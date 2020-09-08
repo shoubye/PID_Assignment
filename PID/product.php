@@ -30,7 +30,7 @@ if (isset($_POST["okbutton3"]))
     exit();      
   }
   else
-  header("Location: signup1.php");
+  header("Location: signup.php");
 }
 
 $link = @mysqli_connect("localhost", "root", "root", "shopping", 8889) or die(mysqli_connect_error());  
@@ -98,7 +98,7 @@ $result = mysqli_query ($link, $Text);
                 <input name="okbutton4" type="submit" class="btn btn-success" value ="賣家中心"/>  
                 <?php if($account == ""){?>
                   <input name="okbutton1" type="submit" class="btn btn-danger" value ="登入"/>
-                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="加入會員"/>
+                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="註冊"/>
                   <!-- <input name="okbutton7" type="submit" class="btn btn-primary" style="right" value ="管理員登入"/>                    -->
                 <?php } else {?>
                   <input name="okbutton6" type="submit" class="btn btn-info" value ="我的購物車"/>

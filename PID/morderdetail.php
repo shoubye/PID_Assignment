@@ -20,8 +20,9 @@ $result = mysqli_query($link, "set names utf8");
 
 $id = $_GET["id"];
 
+
 $Text7 =<<<SqlQuery
-SELECT * FROM orderdetail where maccount = '$id';
+SELECT * FROM  product1 ;
 SqlQuery;        
 $result = mysqli_query ($link, $Text7); 
 
@@ -47,9 +48,9 @@ $result = mysqli_query ($link, $Text7);
 
             <div class="container">
                 <br><br>
-                <h2>訂單明細</h2>  
-                <button name="123" type="button" onclick="window.location='index.php'" >回首頁</button>                   
-                <table class="table" align='center' valign="middle">
+                <h2>會員訂單明細</h2>  
+                <button name="123" type="button" onclick="window.location='mindex.php'" >回首頁</button>                   
+                <table class="table" align='center'  valign="middle">
                     <thead align='center' valign="middle">
                         <tr> 
                             <th>會員帳號</th>                    
@@ -81,6 +82,8 @@ $result = mysqli_query ($link, $Text7);
                 </table>   
 
                     <hr size="8" align="center" noshade width="100%" color="A702CF">  
+                    <br><br>
+                    
 
                     <div align="right">  
                         <font  color="F42238" size="5"><?php echo "<i>總計</i>：＄" . $sum ."&nbsp&nbsp" ?></font>
