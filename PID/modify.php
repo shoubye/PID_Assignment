@@ -99,13 +99,12 @@ $result = mysqli_query ($link, $Text7);
                         </tr>   
                         
                         <tr>
-                            <!-- <td> <input type="text" name ="text" id="text" class="form-control" placeholder=""/></td> -->
                             <td></td>
-                            <td> <input type="text0" name ="text0" id="text0" class="form-control"  value="<?php echo $row["productname"]; ?>"/></td> 
-                            <td> <input type="file" name ="text1" id="text1" class="form-control"   value ="<?php echo $row["picture"];?> "/></td>
-                            <td> <input type="text2" name ="text2" id="text2" class="form-control"  value="<?php echo $row["feature"]; ?>"/></td>
-                            <td> <input type="text3" name ="text3" id="text3" class="form-control"  value="<?php echo $row["price"]; ?>"/></td>
-                            <td> <input type="text4" name ="text4" id="text4" class="form-control"  value="<?php echo $row["quantity"]; ?>"/></td>
+                            <td> <input type="text0" name ="text0" id="text0" class="form-control" required value="<?php echo $row["productname"]; ?>"/></td> 
+                            <td> <input type="file" name ="text1" id="text1" class="form-control"  required value ="<?php echo $row["picture"];?> "/></td>
+                            <td> <input type="text2" name ="text2" id="text2" class="form-control" required value="<?php echo $row["feature"]; ?>"/></td>
+                            <td> <input type="text3" name ="text3" id="text3" class="form-control" required value="<?php echo $row["price"]; ?>"/></td>
+                            <td> <input type="text4" name ="text4" id="text4" class="form-control" required value="<?php echo $row["quantity"]; ?>"/></td>
                             <td><button name = "modify" type="submit" id="modify" class="btn btn-danger" > 確定修改 </button> </td>
                         </tr>       
                         
