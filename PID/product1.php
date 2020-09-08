@@ -98,16 +98,16 @@ $result = mysqli_query ($link, $Text7);
                         <th>操作</th>
                     </tr> 
                     </thead>
-                    <tbody>
+                    <tbody >
  
                         <?php  while($row= mysqli_fetch_assoc($result)) {?>  
                             <tr>
                                 <td width ="120">  <?php echo $row["productId"];    ?> </td>
                                 <td width ="170">  <?php echo $row["productname"];  ?> </td>
                                 <td width ="200">  <img id= <?php echo $row["picture"];?>    src ="./image/<?php echo $row["picture"];?>"> </td>
-                                <td width ="250"> ＄ <?php echo $row["feature"];        ?> </td>
+                                <td width ="250">  <?php echo $row["feature"];        ?> </td>
                                 <td width ="180"> ＄ <?php echo $row["price"];        ?> </td>
-                                <td>  <?php echo $row["quantity"];     ?> </td>
+                                <td width ="150">  <?php echo $row["quantity"];     ?> </td>
    
                                 <td>                                    
                                     <button type="button" name ="update" id ="update"  onclick="window.location='modify.php?id=<?= $row['productId'] ?>'">修改</button>                                  
@@ -172,62 +172,6 @@ $result = mysqli_query ($link, $Text7);
         </div>
     </div>
     
-
-
-
-
-
-
-    <div id="Modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">                    
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>    
-                    <h3>新增商品</h3>            
-                </div>
-                
-
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label >商品名稱</label>
-                            <input type="text" name ="text0" id="text0" class="form-control" placeholder=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label >商品圖片</label>
-                            <input type="file" name="text1" id="file" multiple  placeholder=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label >特色</label>
-                            <input type="text2" name="text2" id="text2" class="form-control" placeholder=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label >＄＄＄＄＄</label>
-                            <input type="text" name="text3" id="text3" class="form-control" placeholder=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <label >庫存</label>
-                            <input type="text" name="text4" id="text4" class="form-control" placeholder=""/>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                      <div class="pull-right">
-                          <button name = "addgo" type="submit" id="okButton" class="btn btn-success"> 確定 </button>
-                          <button name = "addgg" type="submit" id="cancelButton" class="btn btn-default"  data-dismiss="modal"> 取消 </button>
-                      </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
     </form>
 
     <script>
