@@ -38,29 +38,52 @@ $result = mysqli_query($link, "set names utf8");
 
 $id = $_POST["addcart"];
 
-
 // 加入購物車到資料庫
 if (isset($_POST["addcart"]))
 {
-  // $Text2 =<<<SqlQuery
-  // SELECT * FROM cart where productId = '$id' ;
-  // SqlQuery;            
-  // $result = mysqli_query($link, $Text2);
-  // $row = mysqli_fetch_assoc($result);
+  $Text2 =<<<SqlQuery
+  SELECT * FROM cart where productId = '$id' ;
+  SqlQuery;            
+  $result = mysqli_query($link, $Text2);
+  $row = mysqli_fetch_assoc($result);
+ 
 
-  $Text1 =<<<SqlQuery
-  INSERT INTO cart (maccount, productId , productname ,picture, price ,feature ,quantity) 
-  SELECT '$account' , productId , productname , picture, price , feature , quantity
-  FROM product
-  where productId = '$id';
-  SqlQuery;  
-  $result = mysqli_query ($link, $Text1); 
-}
+//如果購物車內有此商品數量+1
+if($row["productId"] ==$id )
+ {
+  $Text3 =<<<SqlQuery
+  SELECT buyquantity FROM cart where productId = '$id' ;
+  SqlQuery;            
+  $result = mysqli_query($link, $Text3);
+  $row = mysqli_fetch_assoc($result);
+  $bq = implode("",$row);
+    
+  //查看庫存多少
+  $Text5 =<<<SqlQuery
+  SELECT quantity FROM product where productId = '$id' ;
+  SqlQuery;            
+  $result = mysqli_query($link, $Text5);
+  $row1 = mysqli_fetch_assoc($result);
+  $q = implode("",$row1);
 
-//我的購物車
-if (isset($_POST["okbutton6"]))
-{
-  header("Location: cart.php");
+  if($q > $bq){$bq = $bq + 1;}
+
+  $Text4 =<<<SqlQuery
+  update cart set buyquantity = $bq where productId = '$id';
+  SqlQuery;        
+  $result = mysqli_query ($link, $Text4); 
+ }
+//此商品加入購物車
+else
+ { 
+    $Text1 =<<<SqlQuery
+    INSERT INTO cart (maccount, productId , productname ,picture, price ,feature ,quantity) 
+    SELECT '$account' , productId , productname , picture, price , feature , quantity
+    FROM product
+    where productId = '$id';
+    SqlQuery;  
+    $result = mysqli_query ($link, $Text1); 
+ }
 }
 
 //賣家中心
@@ -68,8 +91,6 @@ $Text =<<<SqlQuery
 SELECT * FROM product ;
 SqlQuery;        
 $result = mysqli_query ($link, $Text); 
-
-
 
 
 ?>
@@ -98,10 +119,9 @@ $result = mysqli_query ($link, $Text);
                 <input name="okbutton4" type="submit" class="btn btn-success" value ="賣家中心"/>  
                 <?php if($account == ""){?>
                   <input name="okbutton1" type="submit" class="btn btn-danger" value ="登入"/>
-                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="註冊"/>
-                  <!-- <input name="okbutton7" type="submit" class="btn btn-primary" style="right" value ="管理員登入"/>                    -->
+                  <input name="okbutton3" type="submit" class="btn btn-danger" value ="註冊"/>       
                 <?php } else {?>
-                  <input name="okbutton6" type="submit" class="btn btn-info" value ="我的購物車"/>
+                  <input name="okbutton6" type="button" class="btn btn-info" value ="我的購物車" onclick="window.location='cart.php'"/>
                   <button type="button" name ="record" class="btn btn-primary" onclick="window.location='orderdetail.php?id=<?= $account ?>'" >購買紀錄</button>                 
                   <input name="okbutton2" type="submit" class="btn btn-danger" value ="登出"/>                                   
                 <?php }?>                     

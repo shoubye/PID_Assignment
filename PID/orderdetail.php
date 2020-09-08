@@ -47,12 +47,11 @@ $result = mysqli_query ($link, $Text7);
 
             <div class="container">
                 <br><br>
-                <h2>訂單明細</h2>  
+                <h2> <?php echo "會員：<i>". $account ."</i>&nbsp;&nbsp;購買紀錄"?></h2>  
                 <button name="123" type="button" onclick="window.location='index.php'" >回首頁</button>                   
                 <table class="table" align='center' valign="middle">
                     <thead align='center' valign="middle">
-                        <tr> 
-                            <th>會員帳號</th>                    
+                        <tr>                                              
                             <th>名稱</th>
                             <th>圖片</th>                                          
                             <th>價格</th>
@@ -67,8 +66,7 @@ $result = mysqli_query ($link, $Text7);
                             <?php
                               $total = $row["price"]* $row["buyquantity"]; //小計
                               $sum = $sum + $total;  //總計
-                            ?>
-                            <td width="120"><?php echo $row["maccount"];?> </td>   
+                            ?>                         
                             <td width="150"><?php echo $row["productname"];?> </td>                       
                             <td width="180"  height="90"><img id= <?php echo $row["picture"];?> src ="./image/<?php echo $row["picture"];?>"></td>               
                             <td width="150">＄<?php echo $row["price"];?></td>
